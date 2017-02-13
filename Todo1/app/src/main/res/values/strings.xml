@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Items Tracker</string>
+    <string name="title_activity_todo">Todo</string>
+    <string name="title_activity_row_layout">row_layout</string>
+    <string-array name="theme_array">
+        <item>Material-Light</item>
+        <item>CustomTheme</item>
+    </string-array>
+</resources>
