@@ -63,57 +63,24 @@ public class MainActivity extends AppCompatActivity implements ItemClickInterfac
         recyclerView = (RecyclerView) findViewById(R.id.lvItem);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
-//        items = new ArrayList<>();
-//        itemList.add(new ItemModel("k"));
         itemList = db.getAllItemFromDb();
-//        readItems();
         itemsAdapter = new RecyclerViewAdapter(itemList, this);
         recyclerView.setAdapter(itemsAdapter);
-//        setupListViewListener();
-
     }
-
-
-    // Attaches a long click listener to the listview
-//    private void setupListViewListener() {
-//
-//
-//        lvItems.setOnItemClickListener(
-//                new AdapterView.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(AdapterView<?> adapter,
-//                                                   View item, int pos, long id) {
-//                        Intent i = new Intent(MainActivity.this, EditItemActivity.class);
-//                        i.putExtra("item", items.get(pos));
-//                        i.putExtra("pos", pos);
-//                        startActivityForResult(i, REQUEST_CODE);
-//                        // Remove the item within array at position
-//                        // items.remove(pos);
-//                        // Refresh the adapter
-//                        // itemsAdapter.notifyDataSetChanged();
-//                        // Return true consumes the long click event (marks it handled)
-//                        writeItems();
-//
-//                    }
-//
-//                });
-//    }
-
 
     public void onAddItem(View v) {
         EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
         String itemText = etNewItem.getText().toString();
-        ItemModel  item = new ItemModel();
+        ItemModel item = new ItemModel();
         item.setName(itemText);
         db.addItemToDb(item);
         itemList.clear();
         itemList.addAll(db.getAllItemFromDb());
         itemsAdapter.notifyDataSetChanged();
         etNewItem.setText("");
-//        writeItems();
     }
-    public void onDeleteAllItem(View v){
+
+    public void onDeleteAllItem(View v) {
         db.deleteAllItemFromDb();
         itemList.clear();
         itemList.addAll(db.getAllItemFromDb());
@@ -122,12 +89,8 @@ public class MainActivity extends AppCompatActivity implements ItemClickInterfac
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // REQUEST_CODE is defined above
         if (resultCode == RESULT_OK) {
             if (requestCode == EDIT_REQUEST) {
-                // Extract name value from result extras
-//                String editedItem = data.getExtras().getString("editItem");
-
                 int pos = data.getExtras().getInt("editPos");
                 int delPos = data.getExtras().getInt("delPos", -1);
                 ItemModel item = data.getParcelableExtra("editItem");
@@ -144,7 +107,6 @@ public class MainActivity extends AppCompatActivity implements ItemClickInterfac
                 itemList.clear();
                 itemList.addAll(db.getAllItemFromDb());
                 itemsAdapter.notifyDataSetChanged();
-//            writeItems();
             }
         }
     }
@@ -156,7 +118,6 @@ public class MainActivity extends AppCompatActivity implements ItemClickInterfac
         i.putExtra("item", item);
         i.putExtra("pos", pos);
         startActivityForResult(i, EDIT_REQUEST);
-//        Toast.makeText(this, "Clicked User : " + itemList.get(pos).name, Toast.LENGTH_SHORT).show();
 
     }
 

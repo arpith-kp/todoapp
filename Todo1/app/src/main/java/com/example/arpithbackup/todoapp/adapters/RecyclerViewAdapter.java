@@ -27,7 +27,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private List<ItemModel> todos;
     private WeakReference<Context> mContextWeakReference;
 
-    //public RecyclerViewAdapter(List<String> items, Context context) {
     public RecyclerViewAdapter(ArrayList<ItemModel> items, Context context) {
         this.todos = items;
         this.mContextWeakReference = new WeakReference<Context>(context);

@@ -11,9 +11,7 @@ import com.example.arpithbackup.todoapp.R;
 
 public class EditItemActivity extends AppCompatActivity {
     private int editPos;
-//    private String item;
     private ItemModel item;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,15 +45,5 @@ public class EditItemActivity extends AppCompatActivity {
         setResult(RESULT_OK, data);
         this.finish();
     }
-//    public void onSubmit(View v) {
-//        // closes the activity and returns to first screen
-//        EditText etNewItem = (EditText) findViewById(R.id.editText);
-//        Intent data = new Intent();
-//        data.putExtra("editItem", etNewItem.getText());
-//        data.putExtra("code", 200);
-//        setResult(RESULT_OK, data);
-//        this.finish();
-//
-//
-//    }
+
 }

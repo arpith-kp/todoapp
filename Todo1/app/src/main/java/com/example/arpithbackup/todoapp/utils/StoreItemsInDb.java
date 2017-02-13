@@ -88,7 +88,7 @@ public class StoreItemsInDb extends SQLiteOpenHelper {
             ContentValues updateTodo = new ContentValues();
             updateTodo.put(KEY_TODO_TEXT, item.getName());
 
-            db.update(TABLE_TODOS, updateTodo, KEY_TODO_ID + "= ?", new String [] {String.valueOf(item.getId())});
+            db.update(TABLE_TODOS, updateTodo, KEY_TODO_ID + "= ?", new String[]{String.valueOf(item.getId())});
             db.setTransactionSuccessful();
         } catch (Exception e) {
             System.out.println(e);
@@ -167,6 +167,7 @@ public class StoreItemsInDb extends SQLiteOpenHelper {
             db.endTransaction();
         }
     }
+
     public void deleteAllItemFromDb() {
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();

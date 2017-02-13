@@ -6,21 +6,20 @@ import android.os.Parcelable;
 /**
  * Created by arpithbackup on 2/12/17.
  */
-public class ItemModel implements Parcelable{
+public class ItemModel implements Parcelable {
 
     private String name;
     private int id;
+
     public ItemModel() {
 
     }
 
-    private ItemModel(Parcel in){
-        String [] data = new String[2];
+    private ItemModel(Parcel in) {
+        String[] data = new String[2];
         in.readStringArray(data);
         this.id = Integer.valueOf(data[0]);
         this.name = data[1];
-//        this.id= in.readInt();
-//        this.name = in.readString();
     }
 
     public void setName(String name) {
@@ -47,14 +46,13 @@ public class ItemModel implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-//        dest.writeString(this.getName().toString());
-//        dest.writeInt(this.getId());
-        dest.writeStringArray(new String[] {
+        dest.writeStringArray(new String[]{
                 String.valueOf(this.getId()),
                 this.getName()
         });
 
     }
+
     public static final Creator<ItemModel> CREATOR = new Creator<ItemModel>() {
         public ItemModel createFromParcel(Parcel source) {
             return new ItemModel(source);
