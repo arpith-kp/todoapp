@@ -45,5 +45,4 @@ public class EditItemActivity extends AppCompatActivity {
         setResult(RESULT_OK, data);
         this.finish();
     }
-
 }

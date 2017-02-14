@@ -52,4 +52,7 @@ dependencies {
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.daimajia.swipelayout:library:1.2.0@aar'
     compile 'com.android.support:design:25.1.1'
+    compile 'com.yqritc:recyclerview-flexibledivider:1.4.0'
+    compile 'com.github.medyo:fancybuttons:1.8.3'
+
 }

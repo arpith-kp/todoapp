@@ -36,24 +36,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public ViewHolder onCreateViewHolder(ViewGroup parent, int i) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_row_list, parent, false);
         Context context = mContextWeakReference.get();
-
         return new ViewHolder(v, context);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
-
         viewHolder.todoText.setText(todos.get(i).getName());
     }
 
     @Override
     public int getItemCount() {
         return todos.size();
-    }
-
-    public void setItems(List<ItemModel> todos) {
-        this.todos = todos;
-        notifyDataSetChanged();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

@@ -12,7 +12,6 @@ public class ItemModel implements Parcelable {
     private int id;
 
     public ItemModel() {
-
     }
 
     private ItemModel(Parcel in) {

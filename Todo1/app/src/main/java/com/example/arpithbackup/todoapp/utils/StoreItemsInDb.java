@@ -28,9 +28,7 @@ public class StoreItemsInDb extends SQLiteOpenHelper {
 
 
     public static synchronized StoreItemsInDb getInstance(Context context) {
-
         if (sInstance == null) {
-
             sInstance = new StoreItemsInDb(context.getApplicationContext());
         }
         return sInstance;
@@ -75,7 +73,6 @@ public class StoreItemsInDb extends SQLiteOpenHelper {
             db.setTransactionSuccessful();
         } catch (Exception e) {
             System.out.println(e);
-            //do nothing
         } finally {
             db.endTransaction();
         }
@@ -92,7 +89,6 @@ public class StoreItemsInDb extends SQLiteOpenHelper {
             db.setTransactionSuccessful();
         } catch (Exception e) {
             System.out.println(e);
-            //do nothing
         } finally {
             db.endTransaction();
         }

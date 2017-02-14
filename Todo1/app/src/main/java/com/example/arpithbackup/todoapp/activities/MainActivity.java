@@ -2,57 +2,33 @@ package com.example.arpithbackup.todoapp.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.DashPathEffect;
+import android.graphics.Paint;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.v7.widget.LinearLayoutManager;
 import android.widget.EditText;
-import android.widget.ListView;
 
 import com.example.arpithbackup.todoapp.interfaces.ItemClickInterface;
 import com.example.arpithbackup.todoapp.models.ItemModel;
 import com.example.arpithbackup.todoapp.R;
 import com.example.arpithbackup.todoapp.adapters.RecyclerViewAdapter;
 import com.example.arpithbackup.todoapp.utils.StoreItemsInDb;
+import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
-import org.apache.commons.io.FileUtils;
-
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements ItemClickInterface {
     private ArrayList<String> items;
     private RecyclerViewAdapter itemsAdapter;
-    private ListView lvItems;
     private StoreItemsInDb db;
     private Context context;
     private RecyclerView recyclerView;
     private ArrayList<ItemModel> itemList;
-
-    private final int DELETE_REQUEST = 1;
     private final int EDIT_REQUEST = 2;
-
-    private void readItems() {
-        File filesDir = getFilesDir();
-        File todoFile = new File(filesDir, "todo.txt");
-        try {
-            items = new ArrayList<String>(FileUtils.readLines(todoFile));
-        } catch (IOException e) {
-            items = new ArrayList<String>();
-        }
-    }
-
-    private void writeItems() {
-        File filesDir = getFilesDir();
-        File todoFile = new File(filesDir, "todo.txt");
-        try {
-            FileUtils.writeLines(todoFile, items);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +37,12 @@ public class MainActivity extends AppCompatActivity implements ItemClickInterfac
         context = getApplicationContext();
         db = StoreItemsInDb.getInstance(context);
         recyclerView = (RecyclerView) findViewById(R.id.lvItem);
+        Paint paint = new Paint();
+        paint.setStrokeWidth(5);
+        paint.setColor(ContextCompat.getColor(context, R.color.colorLighterCoral));
+        paint.setAntiAlias(true);
+        paint.setPathEffect(new DashPathEffect(new float[]{25.0f, 25.0f}, 0));
+        recyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(this).paint(paint).build());
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         itemList = db.getAllItemFromDb();
@@ -118,7 +100,6 @@ public class MainActivity extends AppCompatActivity implements ItemClickInterfac
         i.putExtra("item", item);
         i.putExtra("pos", pos);
         startActivityForResult(i, EDIT_REQUEST);
-
     }
 
 }
